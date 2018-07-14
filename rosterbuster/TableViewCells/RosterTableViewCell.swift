@@ -10,6 +10,8 @@ import UIKit
 
 class RosterTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dutyLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

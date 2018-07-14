@@ -53,7 +53,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(RosterTableViewCell.nib(), forCellReuseIdentifier: cellReuseIdentifier)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView()
@@ -68,20 +68,28 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         APIService.standard.getRosters { (rosters, error) in
             if error == nil {
                 guard let rosters = rosters else { return }
+                self.updateStorage(rosters: rosters)
+            } else {
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
                 }
-                self.updateStorage(rosters: rosters)
             }
         }
     }
     
     func updateStorage(rosters: [Roster]) {
+        self.rosters.removeAll()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try managedContext.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
         for roster in rosters {
             let entity = NSEntityDescription.entity(forEntityName: "Event", in: managedContext)!
             let rosterManagedObject = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -106,6 +114,13 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
 }
 
@@ -115,7 +130,8 @@ extension RosterViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RosterTableViewCell
+        cell.dutyLabel.text = rosters[indexPath.row].value(forKey: "dutyCode") as? String
         
         return cell
     }

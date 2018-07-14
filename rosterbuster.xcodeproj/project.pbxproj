@@ -13,6 +13,9 @@
 		0995434220F9ECD8001A9F7C /* rosterbuster.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0995434020F9ECD8001A9F7C /* rosterbuster.xcdatamodeld */; };
 		0995434420F9ECDB001A9F7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0995434320F9ECDB001A9F7C /* Assets.xcassets */; };
 		0995434720F9ECDB001A9F7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0995434520F9ECDB001A9F7C /* LaunchScreen.storyboard */; };
+		0995435020F9EE51001A9F7C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995434F20F9EE51001A9F7C /* APIService.swift */; };
+		0995435320F9EEB4001A9F7C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995435220F9EEB4001A9F7C /* Product.swift */; };
+		A2D6FAA8C4F589A6C8650A81 /* Pods_rosterbuster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958ACC5EC479E7CBD1A0D9E8 /* Pods_rosterbuster.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,11 @@
 		0995434320F9ECDB001A9F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0995434620F9ECDB001A9F7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0995434820F9ECDB001A9F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0995434F20F9EE51001A9F7C /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0995435220F9EEB4001A9F7C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		36C459090064E2EDAE84D8DA /* Pods-rosterbuster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rosterbuster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rosterbuster/Pods-rosterbuster.debug.xcconfig"; sourceTree = "<group>"; };
+		958ACC5EC479E7CBD1A0D9E8 /* Pods_rosterbuster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rosterbuster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA37C629F165FA322409A630 /* Pods-rosterbuster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rosterbuster.release.xcconfig"; path = "Pods/Target Support Files/Pods-rosterbuster/Pods-rosterbuster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D6FAA8C4F589A6C8650A81 /* Pods_rosterbuster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				0995433820F9ECD8001A9F7C /* rosterbuster */,
 				0995433720F9ECD8001A9F7C /* Products */,
+				F2D5C59591B7C167FDCB7380 /* Pods */,
+				1DAFC6695DEB86B89BAFAF5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +67,74 @@
 		0995433820F9ECD8001A9F7C /* rosterbuster */ = {
 			isa = PBXGroup;
 			children = (
-				0995433920F9ECD8001A9F7C /* AppDelegate.swift */,
-				0995433B20F9ECD8001A9F7C /* ViewController.swift */,
-				0995433D20F9ECD8001A9F7C /* Main.storyboard */,
-				0995434320F9ECDB001A9F7C /* Assets.xcassets */,
-				0995434520F9ECDB001A9F7C /* LaunchScreen.storyboard */,
-				0995434820F9ECDB001A9F7C /* Info.plist */,
+				0995434E20F9EE51001A9F7C /* Networking */,
+				0995435120F9EEB4001A9F7C /* Data Models */,
+				0995435520F9EEEB001A9F7C /* Supporting Files */,
+				0995435620F9EF06001A9F7C /* ViewControllers */,
+				0995435420F9EED8001A9F7C /* XIBs */,
 				0995434020F9ECD8001A9F7C /* rosterbuster.xcdatamodeld */,
 			);
 			path = rosterbuster;
+			sourceTree = "<group>";
+		};
+		0995434E20F9EE51001A9F7C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				0995434F20F9EE51001A9F7C /* APIService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		0995435120F9EEB4001A9F7C /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				0995435220F9EEB4001A9F7C /* Product.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		0995435420F9EED8001A9F7C /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				0995433D20F9ECD8001A9F7C /* Main.storyboard */,
+				0995434520F9ECDB001A9F7C /* LaunchScreen.storyboard */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+		0995435520F9EEEB001A9F7C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0995433920F9ECD8001A9F7C /* AppDelegate.swift */,
+				0995434320F9ECDB001A9F7C /* Assets.xcassets */,
+				0995434820F9ECDB001A9F7C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0995435620F9EF06001A9F7C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0995433B20F9ECD8001A9F7C /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1DAFC6695DEB86B89BAFAF5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				958ACC5EC479E7CBD1A0D9E8 /* Pods_rosterbuster.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2D5C59591B7C167FDCB7380 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36C459090064E2EDAE84D8DA /* Pods-rosterbuster.debug.xcconfig */,
+				EA37C629F165FA322409A630 /* Pods-rosterbuster.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +144,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0995434B20F9ECDB001A9F7C /* Build configuration list for PBXNativeTarget "rosterbuster" */;
 			buildPhases = (
+				620426B011827DC6ABCEB0BA /* [CP] Check Pods Manifest.lock */,
 				0995433220F9ECD8001A9F7C /* Sources */,
 				0995433320F9ECD8001A9F7C /* Frameworks */,
 				0995433420F9ECD8001A9F7C /* Resources */,
+				67BB584C39404D2D33197D20 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +205,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		620426B011827DC6ABCEB0BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-rosterbuster-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67BB584C39404D2D33197D20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-rosterbuster/Pods-rosterbuster-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rosterbuster/Pods-rosterbuster-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0995433220F9ECD8001A9F7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,6 +251,8 @@
 			files = (
 				0995433C20F9ECD8001A9F7C /* ViewController.swift in Sources */,
 				0995433A20F9ECD8001A9F7C /* AppDelegate.swift in Sources */,
+				0995435320F9EEB4001A9F7C /* Product.swift in Sources */,
+				0995435020F9EE51001A9F7C /* APIService.swift in Sources */,
 				0995434220F9ECD8001A9F7C /* rosterbuster.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -271,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -282,11 +395,12 @@
 		};
 		0995434C20F9ECDB001A9F7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C459090064E2EDAE84D8DA /* Pods-rosterbuster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y78N79J6Y9;
-				INFOPLIST_FILE = rosterbuster/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/rosterbuster/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,11 +414,12 @@
 		};
 		0995434D20F9ECDB001A9F7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA37C629F165FA322409A630 /* Pods-rosterbuster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y78N79J6Y9;
-				INFOPLIST_FILE = rosterbuster/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/rosterbuster/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -49,6 +49,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("Rosters", comment: "Rosters")
         setupTableView()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -64,16 +65,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        managedContext = appDelegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
-//
-//        do {
-//            rosters = try managedContext.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//
         if fetchedResultsController.sections?.count == 0 {
             loadData()
         }
@@ -117,7 +108,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             try managedContext.execute(deleteRequest)
         } catch let error as NSError {
-            // TODO: handle the error
+            print("An error occurred")
         }
         for roster in rosters {
             let entity = NSEntityDescription.entity(forEntityName: "Event", in: managedContext)!
@@ -191,6 +182,14 @@ extension RosterViewController {
         }
         
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: Open Detail View here
+        let event = fetchedResultsController.object(at: indexPath) as! Event
+        let detailsViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+        detailsViewController.event = event
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 

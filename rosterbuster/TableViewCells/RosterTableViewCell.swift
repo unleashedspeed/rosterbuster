@@ -16,38 +16,6 @@ class RosterTableViewCell: UITableViewCell {
     @IBOutlet weak var dutyInformationLabel: UILabel!
     @IBOutlet weak var eventTimingsLabel: UILabel!
     @IBOutlet weak var eventExtraInformation: UILabel!
-    
-    enum DutyCode: String {
-        case off = "OFF"
-        case report = "REPORT"
-        case flight = "FLIGHT"
-        case debrief = "DEBRIEF"
-        case layover = "LAYOVER"
-        case training = "TRAINING"
-        case standby = "Standby"
-        case positioning = "POSITIONING"
-        
-        var image: UIImage {
-            switch self {
-            case .off:
-                return UIImage.fontAwesomeIcon(name: .suitcase, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .report:
-                return UIImage.fontAwesomeIcon(name: .hourglassStart, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .flight:
-                return UIImage.fontAwesomeIcon(name: .plane, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .debrief:
-                return UIImage.fontAwesomeIcon(name: .hourglassEnd, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .layover:
-                return UIImage.fontAwesomeIcon(name: .suitcase, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .training:
-                return UIImage.fontAwesomeIcon(name: .book, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .standby:
-                return UIImage.fontAwesomeIcon(name: .paste, textColor: .black, size: CGSize(width: 40, height: 40))
-            case .positioning:
-                return UIImage.fontAwesomeIcon(name: .mapMarker, textColor: .black, size: CGSize(width: 40, height: 40))
-            }
-        }
-    }
 
     func configureWith(event: Event) {
         if let dutyCode = event.dutyCode {
@@ -67,21 +35,21 @@ class RosterTableViewCell: UITableViewCell {
                 
             case DutyCode.debrief.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = ""
+                dutyInformationLabel.text = " "
                 eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = ""
+                eventExtraInformation.text = " "
                 
             case DutyCode.layover.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
                 dutyInformationLabel.text = event.departure ?? ""
                 eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = ""
+                eventExtraInformation.text = " "
                 
             case DutyCode.training.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = ""
+                dutyInformationLabel.text = " "
                 eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = ""
+                eventExtraInformation.text = " "
                 
             case DutyCode.standby.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
@@ -91,21 +59,50 @@ class RosterTableViewCell: UITableViewCell {
                 
             case DutyCode.positioning.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = ""
+                dutyInformationLabel.text = " "
                 eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = ""
+                eventExtraInformation.text = " "
             
             default:
-                // Handle any default case here, this is just an example
+                // Handle any default case here. this is just an example, please ignore it.
                 self.eventImageView.image = UIImage.fontAwesomeIcon(name: .plane, textColor: .black, size: CGSize(width: 40, height: 40))
-                eventInformationLabel.text = ""
-                dutyInformationLabel.text = ""
-                eventTimingsLabel.text = ""
-                eventExtraInformation.text = ""
+                eventInformationLabel.text = " "
+                dutyInformationLabel.text = " "
+                eventTimingsLabel.text = " "
+                eventExtraInformation.text = " "
             }
-            
         }
-        
     }
+}
+
+enum DutyCode: String {
+    case off = "OFF"
+    case report = "REPORT"
+    case flight = "FLIGHT"
+    case debrief = "DEBRIEF"
+    case layover = "LAYOVER"
+    case training = "TRAINING"
+    case standby = "Standby"
+    case positioning = "POSITIONING"
     
+    var image: UIImage {
+        switch self {
+        case .off:
+            return UIImage.fontAwesomeIcon(name: .suitcase, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .report:
+            return UIImage.fontAwesomeIcon(name: .hourglassStart, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .flight:
+            return UIImage.fontAwesomeIcon(name: .plane, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .debrief:
+            return UIImage.fontAwesomeIcon(name: .hourglassEnd, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .layover:
+            return UIImage.fontAwesomeIcon(name: .suitcase, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .training:
+            return UIImage.fontAwesomeIcon(name: .book, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .standby:
+            return UIImage.fontAwesomeIcon(name: .paste, textColor: .black, size: CGSize(width: 40, height: 40))
+        case .positioning:
+            return UIImage.fontAwesomeIcon(name: .mapMarker, textColor: .black, size: CGSize(width: 40, height: 40))
+        }
+    }
 }

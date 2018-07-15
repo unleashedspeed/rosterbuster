@@ -10,6 +10,7 @@
 		0965E87A20FA6A46002CBC96 /* RosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965E87820FA6A46002CBC96 /* RosterTableViewCell.swift */; };
 		0965E87B20FA6A46002CBC96 /* RosterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0965E87920FA6A46002CBC96 /* RosterTableViewCell.xib */; };
 		0965E87E20FA8973002CBC96 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965E87D20FA8973002CBC96 /* UIView+Extension.swift */; };
+		0965E88020FBB9F8002CBC96 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965E87F20FBB9F8002CBC96 /* DetailsViewController.swift */; };
 		0995433A20F9ECD8001A9F7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995433920F9ECD8001A9F7C /* AppDelegate.swift */; };
 		0995433C20F9ECD8001A9F7C /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995433B20F9ECD8001A9F7C /* RosterViewController.swift */; };
 		0995433F20F9ECD8001A9F7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0995433D20F9ECD8001A9F7C /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		0965E87820FA6A46002CBC96 /* RosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTableViewCell.swift; sourceTree = "<group>"; };
 		0965E87920FA6A46002CBC96 /* RosterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RosterTableViewCell.xib; sourceTree = "<group>"; };
 		0965E87D20FA8973002CBC96 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		0965E87F20FBB9F8002CBC96 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0995433620F9ECD8001A9F7C /* rosterbuster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rosterbuster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0995433920F9ECD8001A9F7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0995433B20F9ECD8001A9F7C /* RosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0995433B20F9ECD8001A9F7C /* RosterViewController.swift */,
+				0965E87F20FBB9F8002CBC96 /* DetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				0995433C20F9ECD8001A9F7C /* RosterViewController.swift in Sources */,
 				0965E87E20FA8973002CBC96 /* UIView+Extension.swift in Sources */,
 				0995433A20F9ECD8001A9F7C /* AppDelegate.swift in Sources */,
+				0965E88020FBB9F8002CBC96 /* DetailsViewController.swift in Sources */,
 				0965E87A20FA6A46002CBC96 /* RosterTableViewCell.swift in Sources */,
 				0995435320F9EEB4001A9F7C /* Roster.swift in Sources */,
 				0995435020F9EE51001A9F7C /* APIService.swift in Sources */,

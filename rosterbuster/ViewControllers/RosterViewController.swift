@@ -69,7 +69,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // base condition to check if there is data in local storage or not, if not call API to get data and persist it.
         if fetchedResultsController.fetchedObjects?.count == 0 {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator.center = self.view.center
+            activityIndicator.center = self.tableView.center
             activityIndicator.hidesWhenStopped = true
             activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             tableView.addSubview(activityIndicator)

@@ -70,7 +70,7 @@ enum DutyCode: String {
     var image: UIImage {
         switch self {
         case .off:
-            return UIImage.fontAwesomeIcon(name: .suitcase, textColor: .black, size: CGSize(width: 40, height: 40))
+            return UIImage.fontAwesomeIcon(name: .home, textColor: .black, size: CGSize(width: 40, height: 40))
         case .report:
             return UIImage.fontAwesomeIcon(name: .hourglassStart, textColor: .black, size: CGSize(width: 40, height: 40))
         case .flight:

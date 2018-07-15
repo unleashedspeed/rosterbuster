@@ -185,7 +185,6 @@ extension RosterViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Open Detail View here
         let event = fetchedResultsController.object(at: indexPath) as! Event
         let detailsViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
         detailsViewController.event = event

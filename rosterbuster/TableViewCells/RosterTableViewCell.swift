@@ -21,7 +21,7 @@ class RosterTableViewCell: UITableViewCell {
         if let dutyCode = event.dutyCode {
             self.eventImageView.image = DutyCode(rawValue: dutyCode)?.image
             switch dutyCode.capitalized {
-            case DutyCode.off.rawValue.capitalized:
+            case DutyCode.off.rawValue.capitalized, DutyCode.debrief.rawValue.capitalized, DutyCode.positioning.rawValue.capitalized, DutyCode.training.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
                 dutyInformationLabel.text = " "
                 eventTimingsLabel.text = "24 Hours"
@@ -33,21 +33,9 @@ class RosterTableViewCell: UITableViewCell {
                 eventTimingsLabel.text = (event.departTime ?? "") + " - " + (event.arrivalTime ?? "")
                 eventExtraInformation.text = " "
                 
-            case DutyCode.debrief.rawValue.capitalized:
-                eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = " "
-                eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = " "
-                
             case DutyCode.layover.rawValue.capitalized:
                 eventInformationLabel.text = dutyCode
                 dutyInformationLabel.text = event.departure ?? ""
-                eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = " "
-                
-            case DutyCode.training.rawValue.capitalized:
-                eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = " "
                 eventTimingsLabel.text = "24 Hours"
                 eventExtraInformation.text = " "
                 
@@ -56,12 +44,6 @@ class RosterTableViewCell: UITableViewCell {
                 dutyInformationLabel.text = event.dutyID ?? ""
                 eventTimingsLabel.text = (event.departTime ?? "") + " - " + (event.arrivalTime ?? "")
                 eventExtraInformation.text = "Match Crew"
-                
-            case DutyCode.positioning.rawValue.capitalized:
-                eventInformationLabel.text = dutyCode
-                dutyInformationLabel.text = " "
-                eventTimingsLabel.text = "24 Hours"
-                eventExtraInformation.text = " "
             
             default:
                 // Handle any default case here. this is just an example, please ignore it.

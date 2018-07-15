@@ -48,7 +48,7 @@ class APIService {
                     }
                     
                     if let values = response {
-                        // Error handling should be present here for all the error codes designed by backend engineer for this Endpoint. One example is given below.
+//                        Error handling should be present here for all the error codes designed by backend engineer for this Endpoint. One example is given below.
                         
 //                        let status = value["status"] as! String
 //                        let errorCode = value["error_code"] as! String

@@ -9,13 +9,33 @@
 import UIKit
 import CoreData
 
-class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
     var rosters: [NSManagedObject] = []
     let cellReuseIdentifier = "RosterCell"
-
+    public var managedContext: NSManagedObjectContext!
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<NSManagedObject> in
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            managedContext = appDelegate.persistentContainer.viewContext
+        }
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
+        let primarySortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [primarySortDescriptor]
+        
+        let frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: self.managedContext,
+            sectionNameKeyPath: "date",
+            cacheName: nil)
+        
+        frc.delegate = self
+        
+        return frc
+    }()
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
@@ -30,22 +50,31 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         setupTableView()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        managedContext = appDelegate.persistentContainer.viewContext
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
-        
-        do {
-            rosters = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        if rosters.count == 0 {
+
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        managedContext = appDelegate.persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
+//
+//        do {
+//            rosters = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//
+        if fetchedResultsController.sections?.count == 0 {
             loadData()
         }
     }
@@ -116,6 +145,11 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         DispatchQueue.main.async {
+            do {
+                try self.fetchedResultsController.performFetch()
+            } catch {
+                print("An error occurred")
+            }
             self.tableView.reloadData()
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
@@ -125,15 +159,38 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 }
 
 extension RosterViewController {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rosters.count
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RosterTableViewCell
-        cell.dutyLabel.text = rosters[indexPath.row].value(forKey: "dutyCode") as? String
+        let event = fetchedResultsController.object(at: indexPath) as! Event
+        cell.configureWith(event: event)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.name
+        }
+        
+        return nil
     }
 }
 

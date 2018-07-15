@@ -6,4 +6,6 @@ target 'rosterbuster' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'FontAwesome.swift'
+
 end

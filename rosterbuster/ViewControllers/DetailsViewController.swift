@@ -33,6 +33,7 @@ class DetailsViewController: UIViewController {
         setDetails()
     }
     
+    // MARK: Helper Methods to set details
     func setDetails() {
         eventImageView.image = DutyCode(rawValue: event.dutyCode ?? "FLIGHT")?.image
         flightnrLabel.text = event.flightnr ?? ""

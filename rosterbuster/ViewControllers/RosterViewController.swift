@@ -84,6 +84,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadData()
     }
     
+    // MARK: Local Data From API
     func loadData() {
         APIService.standard.getRosters { (rosters, error) in
             if error == nil {
@@ -99,6 +100,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // MARK: Local Storage Update
     func updateStorage(rosters: [Roster]) {
         self.rosters.removeAll()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -149,6 +151,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
+// MARK: TableViewDataSource, TableViewDelegate and NSFetchedResultsControllerDelegate
 extension RosterViewController {
     func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections {

@@ -13,6 +13,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var tableView: UITableView!
 
+    var activityIndicator: UIActivityIndicatorView!
     var rosters: [NSManagedObject] = []
     let cellReuseIdentifier = "RosterCell"
     public var managedContext: NSManagedObjectContext!
@@ -65,7 +66,14 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if fetchedResultsController.sections?.count == 0 {
+        // base condition to check if there is data in local storage or not, if not call API to get data and persist it.
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            activityIndicator = UIActivityIndicatorView()
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            tableView.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             loadData()
         }
     }
@@ -84,7 +92,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadData()
     }
     
-    // MARK: Local Data From API
+    // MARK: Load Data From API
     func loadData() {
         APIService.standard.getRosters { (rosters, error) in
             if error == nil {
@@ -95,6 +103,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -143,6 +152,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {
                 print("An error occurred")
             }
+            self.activityIndicator.stopAnimating()
             self.tableView.reloadData()
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()

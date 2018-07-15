@@ -152,7 +152,9 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {
                 print("An error occurred")
             }
-            self.activityIndicator.stopAnimating()
+            if self.activityIndicator != nil {
+                self.activityIndicator.stopAnimating()
+            }
             self.tableView.reloadData()
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
